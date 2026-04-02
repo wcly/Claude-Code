@@ -6,10 +6,10 @@
   <img src="preview.png?raw=true" alt="Claude Code CLI" width="700">
 </p>
 
-> [!WARNING]
+> \[!WARNING]
 > 本仓库为**非官方**版本，基于公开 npm 发布包 source map 还原，**仅供研究学习**。源码版权归 [Anthropic](https://www.anthropic.com) 所有。
 
----
+***
 
 ## 快速开始
 
@@ -19,13 +19,98 @@ bun run dev       # 启动 CLI
 bun run version   # 验证版本
 ```
 
----
+***
+
+## 配置 Codex / OpenAI 兼容服务
+
+本仓库保留了原有 Anthropic 登录流程作为默认回退路径，同时新增了一个可选的 Codex/OpenAI 兼容提供方配置：
+
+- 当 `~/.claude/codex.json` **存在且配置有效**时，启动后会优先走 Codex / OpenAI 路径
+- 当 `~/.claude/codex.json` **不存在、禁用或配置不完整**时，仍然走原来的 Anthropic 登录流程
+
+### 配置文件路径
+
+```text
+~/.claude/codex.json
+```
+
+### 配置项说明
+
+```json
+{
+  "enabled": true,
+  "baseURL": "https://api.openai.com/v1",
+  "apiKey": "sk-xxx",
+  "model": "gpt-5-codex",
+  "proxy": {
+    "http": "http://127.0.0.1:7890",
+    "https": "http://127.0.0.1:7890"
+  }
+}
+```
+
+- `enabled`：是否启用 Codex/OpenAI 路径，默认文件存在时视为启用
+- `baseURL`：OpenAI 兼容服务的基础地址，可写服务根地址或直接写到 `/v1`
+- `apiKey`：服务对应的 API Key
+- `model`：要使用的模型名，例如 `gpt-5-codex`
+- `proxy.http` / `proxy.https`：可选的代理地址
+
+### OpenAI 官方示例
+
+```json
+{
+  "enabled": true,
+  "baseURL": "https://api.openai.com/v1",
+  "apiKey": "sk-xxx",
+  "model": "gpt-5-codex"
+}
+```
+
+### OpenAI 兼容网关示例
+
+```json
+{
+  "enabled": true,
+  "baseURL": "https://your-gateway.example.com/v1",
+  "apiKey": "sk-xxx",
+  "model": "gpt-5-codex"
+}
+```
+
+### Packy 示例
+
+```json
+{
+  "enabled": true,
+  "baseURL": "https://www.packyapi.com/v1",
+  "apiKey": "sk-xxx",
+  "model": "gpt-5-codex"
+}
+```
+
+### 使用说明
+
+- `baseURL` 可以填写服务根地址，也可以直接写到 `/v1`
+- 当前适配层在缺少 `/v1` 时会自动补试一次 `/v1/...` 端点
+- `model` 必须填写你的服务端实际支持的模型名
+- 修改 `codex.json` 后，后续请求会按最新配置读取
+- 使用 Codex 模式时，大模型请求会走 OpenAI Responses API 兼容路径
+- 如果请求失败，终端会优先显示 OpenAI/Codex 侧的真实错误，便于排查 `baseURL`、`apiKey` 和 `model`
+
+### 快速排查
+
+- 报 `Invalid value: 'input_text'` 一类协议错误时，通常说明上游兼容层不完全支持 Responses API
+- 报 `404` 时，先检查 `baseURL`、网关路由和上游服务实际开放的端点
+- 报 `401` / `403` 时，优先检查 `apiKey`
+- 报 `400 invalid model` 时，优先检查 `model` 是否是该网关实际支持的名称
+
+***
 
 ## 从源码中发现的 7 大隐藏功能
 
 通过阅读还原后的 1,987 个 TypeScript 源文件，我们发现了大量未公开的隐藏功能。这些功能通过**编译开关**（`feature()`）和**用户类型**（`USER_TYPE`）进行门控，外部发布版中大部分被裁剪。
 
----
+***
 
 ### 1. [BUDDY — AI 电子宠物](docs/01-buddy.md)
 
@@ -42,7 +127,7 @@ bun run version   # 验证版本
 - **动画**：500ms 帧率的 ASCII 精灵动画，气泡对话，窄终端自动退化为表情文字脸（如 `=·ω·=`）
 - **编译开关**：`feature('BUDDY')`
 
----
+***
 
 ### 2. [KAIROS — 永不关机的 Claude](docs/02-kairos.md)
 
@@ -59,7 +144,7 @@ bun run version   # 验证版本
 - **编译开关**：`feature('KAIROS')`、`feature('KAIROS_BRIEF')`、`feature('KAIROS_CHANNELS')`
 - **远程开关**：GrowthBook `tengu_kairos`、`tengu_onyx_plover`（Dream 阈值配置）
 
----
+***
 
 ### 3. [ULTRAPLAN — 云端深度规划](docs/03-ultraplan.md)
 
@@ -74,7 +159,7 @@ bun run version   # 验证版本
 - **编译开关**：`feature('ULTRAPLAN')`
 - **远程开关**：`tengu_ultraplan_model`（控制使用的模型）
 
----
+***
 
 ### 4. [Coordinator — 多 Agent 编排模式](docs/04-coordinator.md)
 
@@ -89,7 +174,7 @@ bun run version   # 验证版本
 - **编译开关**：`feature('COORDINATOR_MODE')`
 - **环境变量**：`CLAUDE_CODE_COORDINATOR_MODE`
 
----
+***
 
 ### 5. [26+ 隐藏命令 & 秘密开关](docs/05-hidden-commands.md)
 
@@ -97,36 +182,36 @@ bun run version   # 验证版本
 
 #### Feature-gated 命令（编译开关控制）
 
-| 命令 | 功能 | 开关 |
-|------|------|------|
-| `/buddy` | 宠物系统 | `BUDDY` |
-| `/proactive` | 主动自主模式 | `PROACTIVE` / `KAIROS` |
-| `/assistant` | 助手模式 | `KAIROS` |
-| `/brief` | 简报模式 | `KAIROS` / `KAIROS_BRIEF` |
-| `/bridge` | 远程控制桥接 | `BRIDGE_MODE` |
-| `/voice` | 语音模式 | `VOICE_MODE` |
-| `/ultraplan` | 云端深度规划 | `ULTRAPLAN` |
-| `/fork` | 子代理分叉 | `FORK_SUBAGENT` |
-| `/peers` | 对等通信 | `UDS_INBOX` |
-| `/workflows` | 工作流脚本 | `WORKFLOW_SCRIPTS` |
-| `/torch` | Torch 功能 | `TORCH` |
-| `/force-snip` | 强制历史截断 | `HISTORY_SNIP` |
+| 命令            | 功能       | 开关                        |
+| ------------- | -------- | ------------------------- |
+| `/buddy`      | 宠物系统     | `BUDDY`                   |
+| `/proactive`  | 主动自主模式   | `PROACTIVE` / `KAIROS`    |
+| `/assistant`  | 助手模式     | `KAIROS`                  |
+| `/brief`      | 简报模式     | `KAIROS` / `KAIROS_BRIEF` |
+| `/bridge`     | 远程控制桥接   | `BRIDGE_MODE`             |
+| `/voice`      | 语音模式     | `VOICE_MODE`              |
+| `/ultraplan`  | 云端深度规划   | `ULTRAPLAN`               |
+| `/fork`       | 子代理分叉    | `FORK_SUBAGENT`           |
+| `/peers`      | 对等通信     | `UDS_INBOX`               |
+| `/workflows`  | 工作流脚本    | `WORKFLOW_SCRIPTS`        |
+| `/torch`      | Torch 功能 | `TORCH`                   |
+| `/force-snip` | 强制历史截断   | `HISTORY_SNIP`            |
 
 #### 仅内部用户（`USER_TYPE === 'ant'`）命令
 
-| 命令 | 功能 |
-|------|------|
-| `/teleport` | 传送会话到远程/本地 |
-| `/bughunter` | 内部 Bug 猎人 |
-| `/mock-limits` | 模拟速率限制 |
-| `/ctx_viz` | 上下文可视化 |
-| `/break-cache` | 强制缓存清除 |
-| `/ant-trace` | 内部追踪工具 |
-| `/good-claude` | 内部反馈 |
-| `/agents-platform` | 智能体平台 |
-| `/autofix-pr` | 自动修复 PR |
-| `/debug-tool-call` | 调试工具调用 |
-| `/reset-limits` | 重置速率限制 |
+| 命令                 | 功能         |
+| ------------------ | ---------- |
+| `/teleport`        | 传送会话到远程/本地 |
+| `/bughunter`       | 内部 Bug 猎人  |
+| `/mock-limits`     | 模拟速率限制     |
+| `/ctx_viz`         | 上下文可视化     |
+| `/break-cache`     | 强制缓存清除     |
+| `/ant-trace`       | 内部追踪工具     |
+| `/good-claude`     | 内部反馈       |
+| `/agents-platform` | 智能体平台      |
+| `/autofix-pr`      | 自动修复 PR    |
+| `/debug-tool-call` | 调试工具调用     |
+| `/reset-limits`    | 重置速率限制     |
 
 #### 隐藏 CLI 参数
 
@@ -141,7 +226,7 @@ bun run version   # 验证版本
 --agent-teams           多代理团队
 ```
 
----
+***
 
 ### 6. [Bridge — 远程遥控终端](docs/06-bridge.md)
 
@@ -156,7 +241,7 @@ bun run version   # 验证版本
 - **权限回调**：`bridgePermissionCallbacks.ts` 远程权限审批
 - **编译开关**：`feature('BRIDGE_MODE')`、`feature('DAEMON')`
 
----
+***
 
 ### 7. [50 个编译开关 + 远程门控](docs/07-feature-gates.md)
 
@@ -169,58 +254,58 @@ bun run version   # 验证版本
 <details>
 <summary>点击展开全部 50 个编译开关</summary>
 
-| 开关 | 说明 |
-|------|------|
-| `BUDDY` | 宠物伴侣系统 |
-| `KAIROS` | 持久助手模式 |
-| `KAIROS_BRIEF` | 简报模式 |
-| `KAIROS_CHANNELS` | 通道通知 |
-| `KAIROS_GITHUB_WEBHOOKS` | GitHub Webhook |
-| `ULTRAPLAN` | 云端深度规划 |
-| `COORDINATOR_MODE` | 多 Agent 编排 |
-| `BRIDGE_MODE` | 远程控制桥接 |
-| `VOICE_MODE` | 语音交互 |
-| `PROACTIVE` | 主动自主模式 |
-| `FORK_SUBAGENT` | 子代理分叉 |
-| `DAEMON` | 守护进程模式 |
-| `UDS_INBOX` | Unix Socket 收件箱 |
-| `WORKFLOW_SCRIPTS` | 工作流脚本 |
-| `TORCH` | Torch 功能 |
-| `MONITOR_TOOL` | 监控工具 |
-| `HISTORY_SNIP` | 历史截断 |
-| `ANTI_DISTILLATION_CC` | 反蒸馏保护 |
-| `BASH_CLASSIFIER` | Bash 命令分类器 |
-| `BG_SESSIONS` | 后台会话 |
-| `CACHED_MICROCOMPACT` | 缓存微压缩 |
-| `CCR_REMOTE_SETUP` | Web 远程设置 |
-| `CHICAGO_MCP` | MCP 扩展（Computer Use） |
-| `COMMIT_ATTRIBUTION` | 提交归属标注 |
-| `CONNECTOR_TEXT` | 连接器文本 |
-| `CONTEXT_COLLAPSE` | 上下文折叠 |
-| `COWORKER_TYPE_TELEMETRY` | 协作者遥测 |
-| `DOWNLOAD_USER_SETTINGS` | 下载用户设置 |
-| `EXPERIMENTAL_SKILL_SEARCH` | 实验性技能搜索 |
-| `EXTRACT_MEMORIES` | 自动提取记忆 |
-| `FILE_PERSISTENCE` | 文件持久化 |
-| `HARD_FAIL` | 硬失败模式 |
-| `LODESTONE` | Lodestone 功能 |
-| `MCP_SKILLS` | MCP 技能系统 |
-| `MEMORY_SHAPE_TELEMETRY` | 记忆形状遥测 |
-| `MESSAGE_ACTIONS` | 消息操作 |
-| `NATIVE_CLIENT_ATTESTATION` | 客户端证明 |
-| `PROMPT_CACHE_BREAK_DETECTION` | 缓存中断检测 |
-| `QUICK_SEARCH` | 快速搜索 |
-| `REACTIVE_COMPACT` | 响应式压缩 |
-| `SLOW_OPERATION_LOGGING` | 慢操作日志 |
-| `STREAMLINED_OUTPUT` | 精简输出 |
-| `TEAMMEM` | 团队记忆同步 |
-| `TEMPLATES` | 模板/分类器 |
-| `TERMINAL_PANEL` | 终端面板 |
-| `TOKEN_BUDGET` | Token 预算 |
-| `TRANSCRIPT_CLASSIFIER` | 转录分类器 |
-| `UNATTENDED_RETRY` | 无人值守重试 |
-| `UPLOAD_USER_SETTINGS` | 上传用户设置 |
-| `BREAK_CACHE_COMMAND` | 缓存清除注入 |
+| 开关                             | 说明                   |
+| ------------------------------ | -------------------- |
+| `BUDDY`                        | 宠物伴侣系统               |
+| `KAIROS`                       | 持久助手模式               |
+| `KAIROS_BRIEF`                 | 简报模式                 |
+| `KAIROS_CHANNELS`              | 通道通知                 |
+| `KAIROS_GITHUB_WEBHOOKS`       | GitHub Webhook       |
+| `ULTRAPLAN`                    | 云端深度规划               |
+| `COORDINATOR_MODE`             | 多 Agent 编排           |
+| `BRIDGE_MODE`                  | 远程控制桥接               |
+| `VOICE_MODE`                   | 语音交互                 |
+| `PROACTIVE`                    | 主动自主模式               |
+| `FORK_SUBAGENT`                | 子代理分叉                |
+| `DAEMON`                       | 守护进程模式               |
+| `UDS_INBOX`                    | Unix Socket 收件箱      |
+| `WORKFLOW_SCRIPTS`             | 工作流脚本                |
+| `TORCH`                        | Torch 功能             |
+| `MONITOR_TOOL`                 | 监控工具                 |
+| `HISTORY_SNIP`                 | 历史截断                 |
+| `ANTI_DISTILLATION_CC`         | 反蒸馏保护                |
+| `BASH_CLASSIFIER`              | Bash 命令分类器           |
+| `BG_SESSIONS`                  | 后台会话                 |
+| `CACHED_MICROCOMPACT`          | 缓存微压缩                |
+| `CCR_REMOTE_SETUP`             | Web 远程设置             |
+| `CHICAGO_MCP`                  | MCP 扩展（Computer Use） |
+| `COMMIT_ATTRIBUTION`           | 提交归属标注               |
+| `CONNECTOR_TEXT`               | 连接器文本                |
+| `CONTEXT_COLLAPSE`             | 上下文折叠                |
+| `COWORKER_TYPE_TELEMETRY`      | 协作者遥测                |
+| `DOWNLOAD_USER_SETTINGS`       | 下载用户设置               |
+| `EXPERIMENTAL_SKILL_SEARCH`    | 实验性技能搜索              |
+| `EXTRACT_MEMORIES`             | 自动提取记忆               |
+| `FILE_PERSISTENCE`             | 文件持久化                |
+| `HARD_FAIL`                    | 硬失败模式                |
+| `LODESTONE`                    | Lodestone 功能         |
+| `MCP_SKILLS`                   | MCP 技能系统             |
+| `MEMORY_SHAPE_TELEMETRY`       | 记忆形状遥测               |
+| `MESSAGE_ACTIONS`              | 消息操作                 |
+| `NATIVE_CLIENT_ATTESTATION`    | 客户端证明                |
+| `PROMPT_CACHE_BREAK_DETECTION` | 缓存中断检测               |
+| `QUICK_SEARCH`                 | 快速搜索                 |
+| `REACTIVE_COMPACT`             | 响应式压缩                |
+| `SLOW_OPERATION_LOGGING`       | 慢操作日志                |
+| `STREAMLINED_OUTPUT`           | 精简输出                 |
+| `TEAMMEM`                      | 团队记忆同步               |
+| `TEMPLATES`                    | 模板/分类器               |
+| `TERMINAL_PANEL`               | 终端面板                 |
+| `TOKEN_BUDGET`                 | Token 预算             |
+| `TRANSCRIPT_CLASSIFIER`        | 转录分类器                |
+| `UNATTENDED_RETRY`             | 无人值守重试               |
+| `UPLOAD_USER_SETTINGS`         | 上传用户设置               |
+| `BREAK_CACHE_COMMAND`          | 缓存清除注入               |
 
 </details>
 
@@ -231,45 +316,45 @@ bun run version   # 验证版本
 
 #### 第三层：GrowthBook 远程 A/B 测试
 
-| 开关 | 控制内容 |
-|------|---------|
-| `tengu_kairos` | KAIROS 助手模式开关 |
-| `tengu_onyx_plover` | 自动做梦阈值（间隔/会话数） |
-| `tengu_cobalt_frost` | 语音识别（Nova 3）开关 |
-| `tengu_ultraplan_model` | Ultraplan 使用的模型 |
-| `tengu_ant_model_override` | 内部用户模型覆盖 |
-| `tengu_session_memory` | 会话记忆功能 |
-| `tengu_max_version_config` | 自动更新 Kill Switch |
-| `tengu_frond_boric` | 数据接收器 Kill Switch |
-| `tengu_herring_clock` | 团队记忆路径 |
-| `tengu_sm_config` | 会话记忆配置 |
+| 开关                         | 控制内容              |
+| -------------------------- | ----------------- |
+| `tengu_kairos`             | KAIROS 助手模式开关     |
+| `tengu_onyx_plover`        | 自动做梦阈值（间隔/会话数）    |
+| `tengu_cobalt_frost`       | 语音识别（Nova 3）开关    |
+| `tengu_ultraplan_model`    | Ultraplan 使用的模型   |
+| `tengu_ant_model_override` | 内部用户模型覆盖          |
+| `tengu_session_memory`     | 会话记忆功能            |
+| `tengu_max_version_config` | 自动更新 Kill Switch  |
+| `tengu_frond_boric`        | 数据接收器 Kill Switch |
+| `tengu_herring_clock`      | 团队记忆路径            |
+| `tengu_sm_config`          | 会话记忆配置            |
 
----
+***
 
 ## 隐藏环境变量速查
 
 <details>
 <summary>点击展开完整环境变量列表</summary>
 
-| 环境变量 | 说明 |
-|----------|------|
-| `ANTHROPIC_MODEL` | 模型覆盖 |
-| `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | 最大输出 token |
-| `CLAUDE_CODE_DISABLE_THINKING` | 禁用思考 |
-| `CLAUDE_CODE_PROACTIVE` | 主动模式 |
-| `CLAUDE_CODE_COORDINATOR_MODE` | 协调器模式 |
-| `CLAUDE_CODE_BRIEF` | 简报模式 |
-| `CLAUDE_CODE_USE_BEDROCK` | 使用 AWS Bedrock |
-| `CLAUDE_CODE_USE_VERTEX` | 使用 Google Vertex |
-| `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | 禁用自动记忆 |
-| `CLAUDE_CODE_EXTRA_BODY` | API 附加 JSON |
-| `CLAUDE_CODE_SYNTAX_HIGHLIGHT` | 语法高亮主题 |
-| `CLAUDE_CODE_IDLE_THRESHOLD_MINUTES` | 空闲阈值（默认 75 分钟） |
-| `CLAUDE_INTERNAL_FC_OVERRIDES` | GrowthBook 覆盖（仅 ant） |
+| 环境变量                                 | 说明                   |
+| ------------------------------------ | -------------------- |
+| `ANTHROPIC_MODEL`                    | 模型覆盖                 |
+| `CLAUDE_CODE_MAX_OUTPUT_TOKENS`      | 最大输出 token           |
+| `CLAUDE_CODE_DISABLE_THINKING`       | 禁用思考                 |
+| `CLAUDE_CODE_PROACTIVE`              | 主动模式                 |
+| `CLAUDE_CODE_COORDINATOR_MODE`       | 协调器模式                |
+| `CLAUDE_CODE_BRIEF`                  | 简报模式                 |
+| `CLAUDE_CODE_USE_BEDROCK`            | 使用 AWS Bedrock       |
+| `CLAUDE_CODE_USE_VERTEX`             | 使用 Google Vertex     |
+| `CLAUDE_CODE_DISABLE_AUTO_MEMORY`    | 禁用自动记忆               |
+| `CLAUDE_CODE_EXTRA_BODY`             | API 附加 JSON          |
+| `CLAUDE_CODE_SYNTAX_HIGHLIGHT`       | 语法高亮主题               |
+| `CLAUDE_CODE_IDLE_THRESHOLD_MINUTES` | 空闲阈值（默认 75 分钟）       |
+| `CLAUDE_INTERNAL_FC_OVERRIDES`       | GrowthBook 覆盖（仅 ant） |
 
 </details>
 
----
+***
 
 ## 项目结构
 
@@ -292,7 +377,7 @@ shims/                  # 原生模块兼容替代
 vendor/                 # 原生绑定源码
 ```
 
----
+***
 
 ## 数据来源
 
@@ -304,3 +389,4 @@ vendor/                 # 原生绑定源码
 - 源码版权归 [Anthropic](https://www.anthropic.com) 所有
 - 仅用于技术研究与学习，请勿用于商业用途
 - 如有侵权，请联系删除
+

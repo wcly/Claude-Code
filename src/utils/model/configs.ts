@@ -7,6 +7,7 @@ export type ModelConfig = Record<APIProvider, ModelName>
 // here since the pattern may change.
 
 export const CLAUDE_3_7_SONNET_CONFIG = {
+  codex: 'claude-3-7-sonnet-20250219',
   firstParty: 'claude-3-7-sonnet-20250219',
   bedrock: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0',
   vertex: 'claude-3-7-sonnet@20250219',
@@ -14,6 +15,7 @@ export const CLAUDE_3_7_SONNET_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_3_5_V2_SONNET_CONFIG = {
+  codex: 'claude-3-5-sonnet-20241022',
   firstParty: 'claude-3-5-sonnet-20241022',
   bedrock: 'anthropic.claude-3-5-sonnet-20241022-v2:0',
   vertex: 'claude-3-5-sonnet-v2@20241022',
@@ -21,6 +23,7 @@ export const CLAUDE_3_5_V2_SONNET_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_3_5_HAIKU_CONFIG = {
+  codex: 'claude-3-5-haiku-20241022',
   firstParty: 'claude-3-5-haiku-20241022',
   bedrock: 'us.anthropic.claude-3-5-haiku-20241022-v1:0',
   vertex: 'claude-3-5-haiku@20241022',
@@ -28,6 +31,7 @@ export const CLAUDE_3_5_HAIKU_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_HAIKU_4_5_CONFIG = {
+  codex: 'claude-haiku-4-5-20251001',
   firstParty: 'claude-haiku-4-5-20251001',
   bedrock: 'us.anthropic.claude-haiku-4-5-20251001-v1:0',
   vertex: 'claude-haiku-4-5@20251001',
@@ -35,6 +39,7 @@ export const CLAUDE_HAIKU_4_5_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_SONNET_4_CONFIG = {
+  codex: 'claude-sonnet-4-20250514',
   firstParty: 'claude-sonnet-4-20250514',
   bedrock: 'us.anthropic.claude-sonnet-4-20250514-v1:0',
   vertex: 'claude-sonnet-4@20250514',
@@ -42,6 +47,7 @@ export const CLAUDE_SONNET_4_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_SONNET_4_5_CONFIG = {
+  codex: 'claude-sonnet-4-5-20250929',
   firstParty: 'claude-sonnet-4-5-20250929',
   bedrock: 'us.anthropic.claude-sonnet-4-5-20250929-v1:0',
   vertex: 'claude-sonnet-4-5@20250929',
@@ -49,6 +55,7 @@ export const CLAUDE_SONNET_4_5_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_OPUS_4_CONFIG = {
+  codex: 'claude-opus-4-20250514',
   firstParty: 'claude-opus-4-20250514',
   bedrock: 'us.anthropic.claude-opus-4-20250514-v1:0',
   vertex: 'claude-opus-4@20250514',
@@ -56,6 +63,7 @@ export const CLAUDE_OPUS_4_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_OPUS_4_1_CONFIG = {
+  codex: 'claude-opus-4-1-20250805',
   firstParty: 'claude-opus-4-1-20250805',
   bedrock: 'us.anthropic.claude-opus-4-1-20250805-v1:0',
   vertex: 'claude-opus-4-1@20250805',
@@ -63,6 +71,7 @@ export const CLAUDE_OPUS_4_1_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_OPUS_4_5_CONFIG = {
+  codex: 'claude-opus-4-5-20251101',
   firstParty: 'claude-opus-4-5-20251101',
   bedrock: 'us.anthropic.claude-opus-4-5-20251101-v1:0',
   vertex: 'claude-opus-4-5@20251101',
@@ -70,6 +79,7 @@ export const CLAUDE_OPUS_4_5_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_OPUS_4_6_CONFIG = {
+  codex: 'claude-opus-4-6',
   firstParty: 'claude-opus-4-6',
   bedrock: 'us.anthropic.claude-opus-4-6-v1',
   vertex: 'claude-opus-4-6',
@@ -77,6 +87,7 @@ export const CLAUDE_OPUS_4_6_CONFIG = {
 } as const satisfies ModelConfig
 
 export const CLAUDE_SONNET_4_6_CONFIG = {
+  codex: 'claude-sonnet-4-6',
   firstParty: 'claude-sonnet-4-6',
   bedrock: 'us.anthropic.claude-sonnet-4-6',
   vertex: 'claude-sonnet-4-6',

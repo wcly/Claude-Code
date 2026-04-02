@@ -721,6 +721,35 @@ export async function queryModelWithoutStreaming({
   signal: AbortSignal
   options: Options
 }): Promise<AssistantMessage> {
+  if (getAPIProvider() === 'codex') {
+    const { queryOpenAIWithStreaming } = await import('./openaiResponses.js')
+
+    let assistantMessage: AssistantMessage | undefined
+    for await (const message of withStreamingVCR(messages, async function* () {
+      yield* queryOpenAIWithStreaming({
+        messages,
+        systemPrompt,
+        thinkingConfig,
+        tools,
+        signal,
+        options,
+      })
+    })) {
+      if (message.type === 'assistant') {
+        assistantMessage = message
+      }
+    }
+
+    if (!assistantMessage) {
+      if (signal.aborted) {
+        throw new APIUserAbortError()
+      }
+      throw new Error('No assistant message found')
+    }
+
+    return assistantMessage
+  }
+
   // Store the assistant message but continue consuming the generator to ensure
   // logAPISuccessAndDuration gets called (which happens after all yields)
   let assistantMessage: AssistantMessage | undefined
@@ -767,6 +796,21 @@ export async function* queryModelWithStreaming({
   StreamEvent | AssistantMessage | SystemAPIErrorMessage,
   void
 > {
+  if (getAPIProvider() === 'codex') {
+    const { queryOpenAIWithStreaming } = await import('./openaiResponses.js')
+
+    return yield* withStreamingVCR(messages, async function* () {
+      yield* queryOpenAIWithStreaming({
+        messages,
+        systemPrompt,
+        thinkingConfig,
+        tools,
+        signal,
+        options,
+      })
+    })
+  }
+
   return yield* withStreamingVCR(messages, async function* () {
     yield* queryModel(
       messages,

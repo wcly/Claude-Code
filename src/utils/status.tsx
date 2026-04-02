@@ -12,6 +12,7 @@ import { formatNumber } from './format.js';
 import { getIdeClientName, type IDEExtensionInstallationStatus, isJetBrainsIde, toIDEDisplayName } from './ide.js';
 import { getClaudeAiUserDefaultModelDescription, modelDisplayString } from './model/model.js';
 import { getAPIProvider } from './model/providers.js';
+import { getActiveCodexConfig } from './codexConfig.js';
 import { getMTLSConfig } from './mtls.js';
 import { checkInstall } from './nativeInstaller/index.js';
 import { getProxyUrl } from './proxy.js';
@@ -242,6 +243,7 @@ export function buildAPIProviderProperties(): Property[] {
   const properties: Property[] = [];
   if (apiProvider !== 'firstParty') {
     const providerLabel = {
+      codex: 'OpenAI-compatible (Codex)',
       bedrock: 'AWS Bedrock',
       vertex: 'Google Vertex AI',
       foundry: 'Microsoft Foundry'
@@ -257,6 +259,32 @@ export function buildAPIProviderProperties(): Property[] {
       properties.push({
         label: 'Anthropic base URL',
         value: anthropicBaseUrl
+      });
+    }
+  } else if (apiProvider === 'codex') {
+    const codexConfig = getActiveCodexConfig();
+    if (codexConfig?.baseURL) {
+      properties.push({
+        label: 'OpenAI base URL',
+        value: codexConfig.baseURL
+      });
+    }
+    if (codexConfig?.model) {
+      properties.push({
+        label: 'OpenAI model',
+        value: codexConfig.model
+      });
+    }
+    if (codexConfig?.proxy?.http) {
+      properties.push({
+        label: 'HTTP proxy',
+        value: codexConfig.proxy.http
+      });
+    }
+    if (codexConfig?.proxy?.https) {
+      properties.push({
+        label: 'HTTPS proxy',
+        value: codexConfig.proxy.https
       });
     }
   } else if (apiProvider === 'bedrock') {

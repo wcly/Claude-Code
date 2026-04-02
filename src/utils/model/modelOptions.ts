@@ -13,6 +13,7 @@ import {
   formatModelPricing,
 } from '../modelCost.js'
 import { getSettings_DEPRECATED } from '../settings/settings.js'
+import { getActiveCodexConfig } from '../codexConfig.js'
 import { checkOpus1mAccess, checkSonnet1mAccess } from './check1mAccess.js'
 import { getAPIProvider } from './providers.js'
 import { isModelAllowed } from './modelAllowlist.js'
@@ -43,6 +44,16 @@ export type ModelOption = {
 }
 
 export function getDefaultOptionForUser(fastMode = false): ModelOption {
+  const codexConfig = getActiveCodexConfig()
+  if (codexConfig?.model) {
+    return {
+      value: null,
+      label: 'Default (recommended)',
+      description: `Use the configured OpenAI model (currently ${codexConfig.model})`,
+      descriptionForModel: `Configured OpenAI model (${codexConfig.model})`,
+    }
+  }
+
   if (process.env.USER_TYPE === 'ant') {
     const currentModel = renderDefaultModelSetting(
       getDefaultMainLoopModelSetting(),
@@ -269,6 +280,18 @@ function getOpusPlanOption(): ModelOption {
 // @[MODEL LAUNCH]: Update the model picker lists below to include/reorder options for the new model.
 // Each user tier (ant, Max/Team Premium, Pro/Team Standard/Enterprise, PAYG 1P, PAYG 3P) has its own list.
 function getModelOptionsBase(fastMode = false): ModelOption[] {
+  const codexConfig = getActiveCodexConfig()
+  if (codexConfig?.model) {
+    return [
+      getDefaultOptionForUser(fastMode),
+      {
+        value: codexConfig.model,
+        label: codexConfig.model,
+        description: 'Configured OpenAI model',
+      },
+    ]
+  }
+
   if (process.env.USER_TYPE === 'ant') {
     // Build options from antModels config
     const antModelOptions: ModelOption[] = getAntModels().map(m => ({
@@ -460,6 +483,10 @@ function getKnownModelOption(model: string): ModelOption | null {
 
 export function getModelOptions(fastMode = false): ModelOption[] {
   const options = getModelOptionsBase(fastMode)
+
+  if (getAPIProvider() === 'codex') {
+    return filterModelOptionsByAllowlist(options)
+  }
 
   // Add the custom model from the ANTHROPIC_CUSTOM_MODEL_OPTION env var
   const envCustomModel = process.env.ANTHROPIC_CUSTOM_MODEL_OPTION

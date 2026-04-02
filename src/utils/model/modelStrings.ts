@@ -2,6 +2,7 @@ import {
   getModelStrings as getModelStringsState,
   setModelStrings as setModelStringsState,
 } from 'src/bootstrap/state.js'
+import { getActiveCodexConfig } from '../codexConfig.js'
 import { logError } from '../log.js'
 import { sequential } from '../sequential.js'
 import { getInitialSettings } from '../settings/settings.js'
@@ -23,6 +24,17 @@ export type ModelStrings = Record<ModelKey, string>
 const MODEL_KEYS = Object.keys(ALL_MODEL_CONFIGS) as ModelKey[]
 
 function getBuiltinModelStrings(provider: APIProvider): ModelStrings {
+  if (provider === 'codex') {
+    const configuredModel = getActiveCodexConfig()?.model
+    if (configuredModel) {
+      const out = {} as ModelStrings
+      for (const key of MODEL_KEYS) {
+        out[key] = configuredModel
+      }
+      return out
+    }
+  }
+
   const out = {} as ModelStrings
   for (const key of MODEL_KEYS) {
     out[key] = ALL_MODEL_CONFIGS[key][provider]
