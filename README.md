@@ -13,10 +13,72 @@
 
 ## 快速开始
 
+### 本地运行
+
 ```bash
 bun install       # 安装依赖（需要 Bun ≥ 1.3.5、Node.js ≥ 24）
 bun run dev       # 启动 CLI
 bun run version   # 验证版本
+```
+
+### 全局使用 `ccc`
+
+如果你想像全局命令一样使用这个还原版，可以按下面的步骤配置。
+
+#### 1. 在仓库根目录注册全局命令
+
+```bash
+bun link
+```
+
+#### 2. 把 Bun 全局命令目录加入 `PATH`
+
+如果你的 shell 里执行 `ccc` 提示 `command not found`，通常是因为 `~/.bun/bin` 还没加入 `PATH`。
+
+推荐这样追加，前面显式补一个换行，避免和现有注释拼到同一行：
+
+```bash
+printf '\nexport PATH="$HOME/.bun/bin:$PATH"\n' >> ~/.zshrc
+source ~/.zshrc
+rehash
+```
+
+#### 3. 验证全局命令是否已经生效
+
+```bash
+which ccc
+ccc --help
+```
+
+正常情况下，`which ccc` 应该输出：
+
+```bash
+/Users/<你的用户名>/.bun/bin/ccc
+```
+
+#### 4. 在任意目录中使用
+
+```bash
+ccc
+ccc --help
+ccc --version
+```
+
+说明：
+
+- `ccc` 会保留你当前所在目录作为工作空间，不会切到安装目录
+- 当前仓库仍然是 restored 开发态；如果源码入口还有残缺，`ccc` 也会表现为同样的开发态提示
+- 如果你之前已经执行过一次 `bun link`，改名后需要在仓库根目录重新执行一次 `bun link`，这样 `~/.bun/bin/ccc` 才会生成
+- 如果你曾经把旧命令名 `cc` 链接到 `~/.bun/bin`，建议删除它，避免和系统编译器 `cc` 冲突：
+
+```bash
+rm -f ~/.bun/bin/cc
+```
+
+- 如果 `PATH` 还没刷新，也可以先直接运行：
+
+```bash
+~/.bun/bin/ccc --help
 ```
 
 ***
@@ -389,4 +451,3 @@ vendor/                 # 原生绑定源码
 - 源码版权归 [Anthropic](https://www.anthropic.com) 所有
 - 仅用于技术研究与学习，请勿用于商业用途
 - 如有侵权，请联系删除
-

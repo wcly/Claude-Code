@@ -1,6 +1,7 @@
 import pkg from '../package.json'
-import { existsSync, readdirSync, readFileSync } from 'fs'
+import { existsSync, readFileSync, readdirSync } from 'fs'
 import { dirname, extname, join, resolve } from 'path'
+import { getRepoRootFromModuleUrl, getScanRootsForRepo } from './devEntryPaths.js'
 
 type MacroConfig = {
   VERSION: string
@@ -66,8 +67,10 @@ function hasResolvableTarget(basePath: string): boolean {
 
 function collectMissingRelativeImports(): MissingImport[] {
   const files: string[] = []
-  scanFiles(resolve('src'), files)
-  scanFiles(resolve('vendor'), files)
+  const repoRoot = getRepoRootFromModuleUrl(import.meta.url)
+  for (const scanRoot of getScanRootsForRepo(repoRoot)) {
+    scanFiles(scanRoot, files)
+  }
   const missing: MissingImport[] = []
   const seen = new Set<string>()
   const pattern =
