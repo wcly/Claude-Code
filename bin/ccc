@@ -1,0 +1,11 @@
+#!/usr/bin/env bun
+
+import { realpathSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
+
+const launcherPath = realpathSync(fileURLToPath(import.meta.url))
+const repoRoot = dirname(dirname(launcherPath))
+const entryUrl = pathToFileURL(join(repoRoot, 'src', 'dev-entry.ts')).href
+
+await import(entryUrl)
