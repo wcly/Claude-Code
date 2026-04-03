@@ -67,14 +67,6 @@ ccc --version
 说明：
 
 - `ccc` 会保留你当前所在目录作为工作空间，不会切到安装目录
-- 当前仓库仍然是 restored 开发态；如果源码入口还有残缺，`ccc` 也会表现为同样的开发态提示
-- 如果你之前已经执行过一次 `bun link`，改名后需要在仓库根目录重新执行一次 `bun link`，这样 `~/.bun/bin/ccc` 才会生成
-- 如果你曾经把旧命令名 `cc` 链接到 `~/.bun/bin`，建议删除它，避免和系统编译器 `cc` 冲突：
-
-```bash
-rm -f ~/.bun/bin/cc
-```
-
 - 如果 `PATH` 还没刷新，也可以先直接运行：
 
 ```bash
@@ -116,55 +108,6 @@ rm -f ~/.bun/bin/cc
 - `apiKey`：服务对应的 API Key
 - `model`：要使用的模型名，例如 `gpt-5-codex`
 - `proxy.http` / `proxy.https`：可选的代理地址
-
-### OpenAI 官方示例
-
-```json
-{
-  "enabled": true,
-  "baseURL": "https://api.openai.com/v1",
-  "apiKey": "sk-xxx",
-  "model": "gpt-5-codex"
-}
-```
-
-### OpenAI 兼容网关示例
-
-```json
-{
-  "enabled": true,
-  "baseURL": "https://your-gateway.example.com/v1",
-  "apiKey": "sk-xxx",
-  "model": "gpt-5-codex"
-}
-```
-
-### Packy 示例
-
-```json
-{
-  "enabled": true,
-  "baseURL": "https://www.packyapi.com/v1",
-  "apiKey": "sk-xxx",
-  "model": "gpt-5-codex"
-}
-```
-
-### 使用说明
-
-- `baseURL` 可以填写服务根地址，也可以直接写到 `/v1`
-- 当前适配层在缺少 `/v1` 时会自动补试一次 `/v1/...` 端点
-- `model` 必须填写你的服务端实际支持的模型名
-- 修改 `codex.json` 后，后续请求会按最新配置读取
-- 使用 Codex 模式时，大模型请求会走 OpenAI Responses API 兼容路径
-- 如果请求失败，终端会优先显示 OpenAI/Codex 侧的真实错误，便于排查 `baseURL`、`apiKey` 和 `model`
-
-### 快速排查
-
-- 报 `Invalid value: 'input_text'` 一类协议错误时，通常说明上游兼容层不完全支持 Responses API
-- 报 `404` 时，先检查 `baseURL`、网关路由和上游服务实际开放的端点
-- 报 `401` / `403` 时，优先检查 `apiKey`
-- 报 `400 invalid model` 时，优先检查 `model` 是否是该网关实际支持的名称
 
 ***
 
