@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: services/plugins
+title: 插件系统与市场管理
+scope:
+    - src/services/plugins/
+source_files: []
+depends_on: []
+related_to:
+    - path: commands/plugin
+    - path: plugins_skills_memdir

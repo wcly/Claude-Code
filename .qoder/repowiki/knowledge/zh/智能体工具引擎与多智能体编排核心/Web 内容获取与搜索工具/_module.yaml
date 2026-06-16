@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: tools_engine/web_tools
+title: Web 内容获取与搜索工具
+scope:
+    - src/tools/WebBrowserTool/
+    - src/tools/WebFetchTool/
+    - src/tools/WebSearchTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/api
+    - path: tools_engine/file_search_notebook

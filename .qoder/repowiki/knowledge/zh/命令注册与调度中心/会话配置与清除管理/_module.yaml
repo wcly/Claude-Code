@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: commands/session_config_clear
+title: 会话配置与清除管理
+scope:
+    - src/commands/session/
+    - src/commands/config/
+    - src/commands/clear/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/compact
+    - path: tools_engine/config_and_modes
+    - path: services/remote_managed_settings

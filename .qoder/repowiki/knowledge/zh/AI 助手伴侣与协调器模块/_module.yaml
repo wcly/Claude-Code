@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: assistant_buddy_coordinator
+title: AI 助手伴侣与协调器模块
+scope:
+    - src/assistant/
+    - src/buddy/
+    - src/coordinator/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/team_workflow
+    - path: ui_components
+    - path: services/tips

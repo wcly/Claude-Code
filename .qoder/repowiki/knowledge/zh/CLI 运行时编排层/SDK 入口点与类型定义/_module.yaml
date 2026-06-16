@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: cli_runtime/sdk_entrypoints
+title: SDK 入口点与类型定义
+scope:
+    - src/entrypoints/
+source_files: []
+depends_on: []
+related_to: []

@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: services/api
+title: API 客户端与远程交互服务
+scope:
+    - src/services/api/
+source_files: []
+depends_on: []
+related_to:
+    - path: screens_query_proactive
+    - path: tools_engine/web_tools
+    - path: services/remote_managed_settings
+    - path: commands/review

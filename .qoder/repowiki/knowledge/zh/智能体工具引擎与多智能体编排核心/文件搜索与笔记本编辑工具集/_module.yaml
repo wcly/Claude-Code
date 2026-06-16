@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: tools_engine/file_search_notebook
+title: 文件搜索与笔记本编辑工具集
+scope:
+    - src/tools/GlobTool/
+    - src/tools/GrepTool/
+    - src/tools/NotebookEditTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/file_operations
+    - path: services/lsp
+    - path: tools_engine/web_tools

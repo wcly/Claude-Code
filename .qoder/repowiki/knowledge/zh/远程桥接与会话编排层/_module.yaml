@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: bridge_remote
+title: 远程桥接与会话编排层
+scope:
+    - src/bridge/
+    - src/remote/
+    - src/server/
+    - src/ssh/
+source_files: []
+depends_on: []
+related_to: []

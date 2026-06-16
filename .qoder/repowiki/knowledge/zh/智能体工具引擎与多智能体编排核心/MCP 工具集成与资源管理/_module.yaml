@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: tools_engine/mcp_integration
+title: MCP 工具集成与资源管理
+scope:
+    - src/tools/MCPTool/
+    - src/tools/ListMcpResourcesTool/
+    - src/tools/ReadMcpResourceTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/mcp

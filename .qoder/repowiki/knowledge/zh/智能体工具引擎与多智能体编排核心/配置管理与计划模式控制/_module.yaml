@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: tools_engine/config_and_modes
+title: 配置管理与计划模式控制
+scope:
+    - src/tools/ConfigTool/
+    - src/tools/EnterPlanModeTool/
+    - src/tools/ExitPlanModeTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: commands/session_config_clear

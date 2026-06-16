@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: tools_engine/team_workflow
+title: 多智能体团队与工作流管理
+scope:
+    - src/tools/TeamCreateTool/
+    - src/tools/TeamDeleteTool/
+    - src/tools/WorkflowTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/agent
+    - path: tools_engine/messaging
+    - path: assistant_buddy_coordinator

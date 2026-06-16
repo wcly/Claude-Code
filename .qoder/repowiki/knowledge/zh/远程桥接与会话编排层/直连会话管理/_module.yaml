@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: bridge_remote/direct_connect_server
+title: 直连会话管理
+scope:
+    - src/server/
+source_files: []
+depends_on: []
+related_to:
+    - path: bridge_remote/remote_session
+    - path: cli_runtime/cli_runtime_core

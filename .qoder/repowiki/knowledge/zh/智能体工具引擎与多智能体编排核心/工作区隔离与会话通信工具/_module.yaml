@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: tools_engine/worktree
+title: 工作区隔离与会话通信工具
+scope:
+    - src/tools/EnterWorktreeTool/
+    - src/tools/ExitWorktreeTool/
+    - src/tools/BriefTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/file_operations

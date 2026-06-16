@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: commands/mcp
+title: MCP 服务器管理与配置
+scope:
+    - src/commands/mcp/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/mcp

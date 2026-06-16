@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: utils_support
+title: 权限控制与自动决策引擎
+scope:
+    - src/utils/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/tools
+    - path: services/team_memory_sync

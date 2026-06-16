@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: tools_engine/task_lifecycle_todo
+title: 任务生命周期与待办管理工具
+scope:
+    - src/tools/TaskStopTool/
+    - src/tools/TaskUpdateTool/
+    - src/tools/TodoWriteTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tasks_jobs_migrations
+    - path: tools_engine/task_management

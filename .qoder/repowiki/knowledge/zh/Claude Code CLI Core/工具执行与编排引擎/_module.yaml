@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: services/tools
+title: 工具执行与编排引擎
+scope:
+    - src/services/tools/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine
+    - path: utils_support
+    - path: tools_engine/bash_shell
+    - path: tools_engine/file_operations
+    - path: tools_engine/tool_search

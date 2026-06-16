@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: tools_engine/scheduling
+title: 定时任务调度工具集
+scope:
+    - src/tools/ScheduleCronTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tasks_jobs_migrations

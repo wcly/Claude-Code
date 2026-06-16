@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: tools_engine/messaging
+title: 智能体通信与远程触发工具集
+scope:
+    - src/tools/SendMessageTool/
+    - src/tools/SendUserFileTool/
+    - src/tools/RemoteTriggerTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/team_workflow
+    - path: bridge_remote/remote_session

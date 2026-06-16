@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: commands/review
+title: Ultrareview 远程代码审查命令
+scope:
+    - src/commands/review/
+source_files: []
+depends_on: []
+related_to:
+    - path: bridge_remote/remote_session
+    - path: services/api

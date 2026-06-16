@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: services/tips
+title: 智能提示服务
+scope:
+    - src/services/tips/
+source_files: []
+depends_on: []
+related_to:
+    - path: state_hooks_context
+    - path: assistant_buddy_coordinator

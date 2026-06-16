@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: types_constants_schemas
+title: 类型定义、常量与模式校验
+scope:
+    - src/types/
+    - src/constants/
+    - src/schemas/
+source_files: []
+depends_on: []
+related_to:
+    - path: commands
+    - path: tools_engine
+    - path: services/mcp

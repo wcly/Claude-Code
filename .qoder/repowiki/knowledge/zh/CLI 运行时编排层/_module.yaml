@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: cli_runtime
+title: CLI 运行时编排层
+scope:
+    - src/cli/
+    - src/entrypoints/
+    - src/ink/
+source_files: []
+depends_on: []
+related_to:
+    - path: docs

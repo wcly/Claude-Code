@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: bridge_remote/bridge_core
+title: 远程桥接核心与 REPL 会话管理
+scope:
+    - src/bridge/
+source_files: []
+depends_on: []
+related_to:
+    - path: bridge_remote/remote_session
+    - path: bootstrap_output_moreright_upstream
+    - path: cli_runtime/cli_runtime_core

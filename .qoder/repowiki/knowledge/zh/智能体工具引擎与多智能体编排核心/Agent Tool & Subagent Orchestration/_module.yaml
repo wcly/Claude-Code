@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: tools_engine/agent
+title: Agent Tool & Subagent Orchestration
+scope:
+    - src/tools/AgentTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/session_memory
+    - path: tasks_jobs_migrations
+    - path: tools_engine/team_workflow
+    - path: screens_query_proactive

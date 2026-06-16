@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: services/compact
+title: 会话上下文压缩与微优化
+scope:
+    - src/services/compact/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/session_memory
+    - path: commands/session_config_clear
+    - path: services/context_collapse

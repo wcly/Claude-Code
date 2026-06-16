@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: services/auto_dream
+title: 自动记忆巩固服务
+scope:
+    - src/services/autoDream/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/session_memory

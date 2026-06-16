@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: tools_engine/misc_utilities_3
+title: 杂项工具定义
+scope:
+    - src/tools/ReviewArtifactTool/
+    - src/tools/SleepTool/
+    - src/tools/SnipTool/
+source_files: []
+depends_on: []
+related_to: []

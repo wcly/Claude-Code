@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: services/oauth
+title: OAuth 2.0 PKCE 认证与令牌管理
+scope:
+    - src/services/oauth/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/mcp
+    - path: commands/install_github_app

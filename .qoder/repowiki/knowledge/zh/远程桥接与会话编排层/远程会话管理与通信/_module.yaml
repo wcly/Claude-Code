@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: bridge_remote/remote_session
+title: 远程会话管理与通信
+scope:
+    - src/remote/
+source_files: []
+depends_on: []
+related_to:
+    - path: bridge_remote/bridge_core
+    - path: bridge_remote/direct_connect_server
+    - path: commands/review
+    - path: tools_engine/messaging

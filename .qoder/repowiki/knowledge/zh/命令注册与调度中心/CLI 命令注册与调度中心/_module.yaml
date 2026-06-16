@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: commands/misc_tools
+title: CLI 命令注册与调度中心
+scope:
+    - src/commands/
+source_files: []
+depends_on: []
+related_to: []

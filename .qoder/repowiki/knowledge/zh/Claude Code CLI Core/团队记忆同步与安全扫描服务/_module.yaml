@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: services/team_memory_sync
+title: 团队记忆同步与安全扫描服务
+scope:
+    - src/services/teamMemorySync/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/session_memory
+    - path: utils_support

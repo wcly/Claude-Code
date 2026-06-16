@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: tools_engine/lsp_tool
+title: LSP 代码智能交互工具
+scope:
+    - src/tools/LSPTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/lsp

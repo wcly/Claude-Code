@@ -1,0 +1,16 @@
+schema_version: 1
+module_path: ""
+title: Claude Code 智能体开发环境核心
+scope:
+    - AGENTS.md
+    - package.json
+    - tsconfig.json
+    - bun.lock
+    - package-lock.json
+    - .gitignore
+    - image-processor.node
+    - README.md
+    - preview.png
+source_files: []
+depends_on: []
+related_to: []

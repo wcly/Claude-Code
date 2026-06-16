@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: services/skill_search
+title: 技能搜索服务
+scope:
+    - src/services/skillSearch/
+source_files: []
+depends_on: []
+related_to:
+    - path: plugins_skills_memdir

@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: commands/install_github_app
+title: GitHub App 安装与 Actions 配置向导
+scope:
+    - src/commands/install-github-app/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/oauth
+    - path: tools_engine/bash_shell

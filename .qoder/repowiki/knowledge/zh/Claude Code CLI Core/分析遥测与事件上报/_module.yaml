@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: services/analytics
+title: 分析遥测与事件上报
+scope:
+    - src/services/analytics/
+source_files: []
+depends_on: []
+related_to:
+    - path: bootstrap_output_moreright_upstream

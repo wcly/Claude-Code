@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: screens_query_proactive
+title: 查询执行与生命周期管理
+scope:
+    - src/screens/
+    - src/query/
+    - src/proactive/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/api
+    - path: tools_engine/agent

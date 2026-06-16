@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: tools_engine/misc_utilities_1
+title: 交互式用户输入与REPL环境工具
+scope:
+    - src/tools/AskUserQuestionTool/
+    - src/tools/REPLTool/
+    - src/tools/TungstenTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: ui_components

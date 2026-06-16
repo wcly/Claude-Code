@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: tools_engine/misc_utilities_2
+title: 杂项工具占位模块
+scope:
+    - src/tools/DiscoverSkillsTool/
+    - src/tools/MonitorTool/
+    - src/tools/OverflowTestTool/
+source_files: []
+depends_on: []
+related_to: []

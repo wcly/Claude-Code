@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: tools_engine/file_operations
+title: 文件系统读写与编辑工具
+scope:
+    - src/tools/FileEditTool/
+    - src/tools/FileReadTool/
+    - src/tools/FileWriteTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/lsp
+    - path: services/tools
+    - path: tools_engine/worktree
+    - path: tools_engine/file_search_notebook
+    - path: native_shims_vendor

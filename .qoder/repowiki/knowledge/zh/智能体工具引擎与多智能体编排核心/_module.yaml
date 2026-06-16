@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: tools_engine
+title: 智能体工具引擎与多智能体编排核心
+scope:
+    - src/tools/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/tools
+    - path: types_constants_schemas

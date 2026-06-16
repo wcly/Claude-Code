@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: tools_engine/misc_utilities_5
+title: 任务输出检索与 MCP 认证代理
+scope:
+    - src/tools/TaskOutputTool/
+    - src/tools/McpAuthTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tasks_jobs_migrations
+    - path: tools_engine/task_management

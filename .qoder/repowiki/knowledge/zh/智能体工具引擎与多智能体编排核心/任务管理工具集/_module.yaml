@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: tools_engine/task_management
+title: 任务管理工具集
+scope:
+    - src/tools/TaskCreateTool/
+    - src/tools/TaskGetTool/
+    - src/tools/TaskListTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/task_lifecycle_todo
+    - path: tools_engine/misc_utilities_5

@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: services/mcp
+title: MCP 连接管理与协议交互
+scope:
+    - src/services/mcp/
+source_files: []
+depends_on: []
+related_to:
+    - path: commands/mcp
+    - path: tools_engine/mcp_integration
+    - path: services/oauth
+    - path: types_constants_schemas

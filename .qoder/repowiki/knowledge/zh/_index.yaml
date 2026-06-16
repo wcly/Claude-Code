@@ -1,0 +1,842 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: main
+exported_at: "2026-06-15T09:24:57Z"
+modules:
+    "":
+        dir_name: Claude Code 智能体开发环境核心
+        title: Claude Code 智能体开发环境核心
+        scope:
+            - AGENTS.md
+            - package.json
+            - tsconfig.json
+            - bun.lock
+            - package-lock.json
+            - .gitignore
+            - image-processor.node
+            - README.md
+            - preview.png
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    assistant_buddy_coordinator:
+        dir_name: AI 助手伴侣与协调器模块
+        title: AI 助手伴侣与协调器模块
+        scope:
+            - src/assistant/
+            - src/buddy/
+            - src/coordinator/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/team_workflow
+            - path: ui_components
+            - path: services/tips
+    bootstrap_output_moreright_upstream:
+        dir_name: 会话状态管理与上游代理隧道
+        title: 会话状态管理与上游代理隧道
+        scope:
+            - src/bootstrap/
+            - src/outputStyles/
+            - src/moreright/
+            - src/upstreamproxy/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: bridge_remote/bridge_core
+            - path: services/analytics
+            - path: state_hooks_context
+    bridge_remote:
+        dir_name: 远程桥接与会话编排层
+        title: 远程桥接与会话编排层
+        scope:
+            - src/bridge/
+            - src/remote/
+            - src/server/
+            - src/ssh/
+        source_files: []
+        children:
+            - bridge_remote/bridge_core
+            - bridge_remote/remote_session
+            - bridge_remote/direct_connect_server
+        depends_on: []
+        related_to: []
+    bridge_remote/bridge_core:
+        dir_name: 远程桥接核心与 REPL 会话管理
+        title: 远程桥接核心与 REPL 会话管理
+        scope:
+            - src/bridge/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: bridge_remote/remote_session
+            - path: bootstrap_output_moreright_upstream
+            - path: cli_runtime/cli_runtime_core
+    bridge_remote/direct_connect_server:
+        dir_name: 直连会话管理
+        title: 直连会话管理
+        scope:
+            - src/server/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: bridge_remote/remote_session
+            - path: cli_runtime/cli_runtime_core
+    bridge_remote/remote_session:
+        dir_name: 远程会话管理与通信
+        title: 远程会话管理与通信
+        scope:
+            - src/remote/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: bridge_remote/bridge_core
+            - path: bridge_remote/direct_connect_server
+            - path: commands/review
+            - path: tools_engine/messaging
+    cli_runtime:
+        dir_name: CLI 运行时编排层
+        title: CLI 运行时编排层
+        scope:
+            - src/cli/
+            - src/entrypoints/
+            - src/ink/
+        source_files: []
+        children:
+            - cli_runtime/sdk_entrypoints
+            - cli_runtime/terminal_ui_engine
+            - cli_runtime/cli_runtime_core
+        depends_on: []
+        related_to:
+            - path: docs
+    cli_runtime/cli_runtime_core:
+        dir_name: CLI Runtime Core & Transport Layer
+        title: CLI Runtime Core & Transport Layer
+        scope:
+            - src/cli/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: cli_runtime/terminal_ui_engine
+            - path: bridge_remote/bridge_core
+            - path: bridge_remote/direct_connect_server
+    cli_runtime/sdk_entrypoints:
+        dir_name: SDK 入口点与类型定义
+        title: SDK 入口点与类型定义
+        scope:
+            - src/entrypoints/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    cli_runtime/terminal_ui_engine:
+        dir_name: 终端 UI 渲染与交互引擎
+        title: 终端 UI 渲染与交互引擎
+        scope:
+            - src/ink/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: cli_runtime/cli_runtime_core
+            - path: ui_components
+            - path: keybindings_vim_voice
+            - path: native_shims_vendor
+            - path: state_hooks_context
+    commands:
+        dir_name: 命令注册与调度中心
+        title: 命令注册与调度中心
+        scope:
+            - src/commands/
+        source_files: []
+        children:
+            - commands/session_config_clear
+            - commands/review
+            - commands/install_github_app
+            - commands/mcp
+            - commands/misc_tools
+            - commands/plugin
+        depends_on: []
+        related_to:
+            - path: types_constants_schemas
+    commands/install_github_app:
+        dir_name: GitHub App 安装与 Actions 配置向导
+        title: GitHub App 安装与 Actions 配置向导
+        scope:
+            - src/commands/install-github-app/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/oauth
+            - path: tools_engine/bash_shell
+    commands/mcp:
+        dir_name: MCP 服务器管理与配置
+        title: MCP 服务器管理与配置
+        scope:
+            - src/commands/mcp/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/mcp
+    commands/misc_tools:
+        dir_name: CLI 命令注册与调度中心
+        title: CLI 命令注册与调度中心
+        scope:
+            - src/commands/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    commands/plugin:
+        dir_name: 插件管理与市场交互
+        title: 插件管理与市场交互
+        scope:
+            - src/commands/plugin/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/plugins
+            - path: plugins_skills_memdir
+    commands/review:
+        dir_name: Ultrareview 远程代码审查命令
+        title: Ultrareview 远程代码审查命令
+        scope:
+            - src/commands/review/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: bridge_remote/remote_session
+            - path: services/api
+    commands/session_config_clear:
+        dir_name: 会话配置与清除管理
+        title: 会话配置与清除管理
+        scope:
+            - src/commands/session/
+            - src/commands/config/
+            - src/commands/clear/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/compact
+            - path: tools_engine/config_and_modes
+            - path: services/remote_managed_settings
+    docs:
+        dir_name: Claude Code 隐藏功能与架构文档
+        title: Claude Code 隐藏功能与架构文档
+        scope:
+            - docs/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: cli_runtime
+    keybindings_vim_voice:
+        dir_name: 快捷键绑定与 Vim 模式引擎
+        title: 快捷键绑定与 Vim 模式引擎
+        scope:
+            - src/keybindings/
+            - src/vim/
+            - src/voice/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: cli_runtime/terminal_ui_engine
+            - path: state_hooks_context
+    native_shims_vendor:
+        dir_name: 原生能力垫片与纯 TS 替代层
+        title: 原生能力垫片与纯 TS 替代层
+        scope:
+            - src/native-ts/
+            - shims/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: cli_runtime/terminal_ui_engine
+            - path: tools_engine/file_operations
+    plugins_skills_memdir:
+        dir_name: 插件、技能与记忆目录管理
+        title: 插件、技能与记忆目录管理
+        scope:
+            - src/plugins/
+            - src/skills/
+            - src/memdir/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/plugins
+            - path: services/session_memory
+            - path: services/skill_search
+            - path: commands/plugin
+    screens_query_proactive:
+        dir_name: 查询执行与生命周期管理
+        title: 查询执行与生命周期管理
+        scope:
+            - src/screens/
+            - src/query/
+            - src/proactive/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/api
+            - path: tools_engine/agent
+    services:
+        dir_name: Claude Code CLI Core
+        title: Claude Code CLI Core
+        scope:
+            - src/services/
+        source_files: []
+        children:
+            - services/tips
+            - services/mcp
+            - services/skill_search
+            - services/auto_dream
+            - services/team_memory_sync
+            - services/tools
+            - services/compact
+            - services/session_memory
+            - services/context_collapse
+            - services/remote_managed_settings
+            - services/api
+            - services/oauth
+            - services/analytics
+            - services/plugins
+            - services/lsp
+        depends_on: []
+        related_to: []
+    services/analytics:
+        dir_name: 分析遥测与事件上报
+        title: 分析遥测与事件上报
+        scope:
+            - src/services/analytics/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: bootstrap_output_moreright_upstream
+    services/api:
+        dir_name: API 客户端与远程交互服务
+        title: API 客户端与远程交互服务
+        scope:
+            - src/services/api/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: screens_query_proactive
+            - path: tools_engine/web_tools
+            - path: services/remote_managed_settings
+            - path: commands/review
+    services/auto_dream:
+        dir_name: 自动记忆巩固服务
+        title: 自动记忆巩固服务
+        scope:
+            - src/services/autoDream/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/session_memory
+    services/compact:
+        dir_name: 会话上下文压缩与微优化
+        title: 会话上下文压缩与微优化
+        scope:
+            - src/services/compact/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/session_memory
+            - path: commands/session_config_clear
+            - path: services/context_collapse
+    services/context_collapse:
+        dir_name: 上下文折叠服务
+        title: 上下文折叠服务
+        scope:
+            - src/services/contextCollapse/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/compact
+    services/lsp:
+        dir_name: LSP 服务管理与诊断集成
+        title: LSP 服务管理与诊断集成
+        scope:
+            - src/services/lsp/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/lsp_tool
+            - path: tools_engine/file_operations
+            - path: tools_engine/file_search_notebook
+    services/mcp:
+        dir_name: MCP 连接管理与协议交互
+        title: MCP 连接管理与协议交互
+        scope:
+            - src/services/mcp/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: commands/mcp
+            - path: tools_engine/mcp_integration
+            - path: services/oauth
+            - path: types_constants_schemas
+    services/oauth:
+        dir_name: OAuth 2.0 PKCE 认证与令牌管理
+        title: OAuth 2.0 PKCE 认证与令牌管理
+        scope:
+            - src/services/oauth/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/mcp
+            - path: commands/install_github_app
+    services/plugins:
+        dir_name: 插件系统与市场管理
+        title: 插件系统与市场管理
+        scope:
+            - src/services/plugins/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: commands/plugin
+            - path: plugins_skills_memdir
+    services/remote_managed_settings:
+        dir_name: 远程托管设置管理
+        title: 远程托管设置管理
+        scope:
+            - src/services/remoteManagedSettings/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/api
+            - path: commands/session_config_clear
+    services/session_memory:
+        dir_name: 会话记忆自动维护
+        title: 会话记忆自动维护
+        scope:
+            - src/services/SessionMemory/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/auto_dream
+            - path: services/team_memory_sync
+            - path: services/compact
+            - path: plugins_skills_memdir
+            - path: tools_engine/agent
+    services/skill_search:
+        dir_name: 技能搜索服务
+        title: 技能搜索服务
+        scope:
+            - src/services/skillSearch/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: plugins_skills_memdir
+    services/team_memory_sync:
+        dir_name: 团队记忆同步与安全扫描服务
+        title: 团队记忆同步与安全扫描服务
+        scope:
+            - src/services/teamMemorySync/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/session_memory
+            - path: utils_support
+    services/tips:
+        dir_name: 智能提示服务
+        title: 智能提示服务
+        scope:
+            - src/services/tips/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: state_hooks_context
+            - path: assistant_buddy_coordinator
+    services/tools:
+        dir_name: 工具执行与编排引擎
+        title: 工具执行与编排引擎
+        scope:
+            - src/services/tools/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine
+            - path: utils_support
+            - path: tools_engine/bash_shell
+            - path: tools_engine/file_operations
+            - path: tools_engine/tool_search
+    state_hooks_context:
+        dir_name: 全局状态管理与响应式上下文
+        title: 全局状态管理与响应式上下文
+        scope:
+            - src/state/
+            - src/hooks/
+            - src/context/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: ui_components
+            - path: bootstrap_output_moreright_upstream
+            - path: services/tips
+            - path: keybindings_vim_voice
+            - path: cli_runtime/terminal_ui_engine
+    tasks_jobs_migrations:
+        dir_name: 任务生命周期与状态管理
+        title: 任务生命周期与状态管理
+        scope:
+            - src/tasks/
+            - src/jobs/
+            - src/migrations/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/task_lifecycle_todo
+            - path: tools_engine/bash_shell
+            - path: tools_engine/agent
+            - path: tools_engine/scheduling
+            - path: tools_engine/misc_utilities_5
+    tools_engine:
+        dir_name: 智能体工具引擎与多智能体编排核心
+        title: 智能体工具引擎与多智能体编排核心
+        scope:
+            - src/tools/
+        source_files: []
+        children:
+            - tools_engine/misc_utilities_5
+            - tools_engine/tool_search
+            - tools_engine/agent
+            - tools_engine/file_operations
+            - tools_engine/misc_utilities_1
+            - tools_engine/web_tools
+            - tools_engine/misc_utilities_4
+            - tools_engine/file_search_notebook
+            - tools_engine/bash_shell
+            - tools_engine/scheduling
+            - tools_engine/messaging
+            - tools_engine/mcp_integration
+            - tools_engine/misc_utilities_3
+            - tools_engine/lsp_tool
+            - tools_engine/worktree
+            - tools_engine/config_and_modes
+            - tools_engine/misc_utilities_2
+            - tools_engine/team_workflow
+            - tools_engine/task_lifecycle_todo
+            - tools_engine/task_management
+        depends_on: []
+        related_to:
+            - path: services/tools
+            - path: types_constants_schemas
+    tools_engine/agent:
+        dir_name: Agent Tool & Subagent Orchestration
+        title: Agent Tool & Subagent Orchestration
+        scope:
+            - src/tools/AgentTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/session_memory
+            - path: tasks_jobs_migrations
+            - path: tools_engine/team_workflow
+            - path: screens_query_proactive
+    tools_engine/bash_shell:
+        dir_name: PowerShell 命令执行与安全沙箱
+        title: PowerShell 命令执行与安全沙箱
+        scope:
+            - src/tools/BashTool/
+            - src/tools/PowerShellTool/
+            - src/tools/shared/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tasks_jobs_migrations
+            - path: services/tools
+            - path: commands/install_github_app
+    tools_engine/config_and_modes:
+        dir_name: 配置管理与计划模式控制
+        title: 配置管理与计划模式控制
+        scope:
+            - src/tools/ConfigTool/
+            - src/tools/EnterPlanModeTool/
+            - src/tools/ExitPlanModeTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: commands/session_config_clear
+    tools_engine/file_operations:
+        dir_name: 文件系统读写与编辑工具
+        title: 文件系统读写与编辑工具
+        scope:
+            - src/tools/FileEditTool/
+            - src/tools/FileReadTool/
+            - src/tools/FileWriteTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/lsp
+            - path: services/tools
+            - path: tools_engine/worktree
+            - path: tools_engine/file_search_notebook
+            - path: native_shims_vendor
+    tools_engine/file_search_notebook:
+        dir_name: 文件搜索与笔记本编辑工具集
+        title: 文件搜索与笔记本编辑工具集
+        scope:
+            - src/tools/GlobTool/
+            - src/tools/GrepTool/
+            - src/tools/NotebookEditTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/file_operations
+            - path: services/lsp
+            - path: tools_engine/web_tools
+    tools_engine/lsp_tool:
+        dir_name: LSP 代码智能交互工具
+        title: LSP 代码智能交互工具
+        scope:
+            - src/tools/LSPTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/lsp
+    tools_engine/mcp_integration:
+        dir_name: MCP 工具集成与资源管理
+        title: MCP 工具集成与资源管理
+        scope:
+            - src/tools/MCPTool/
+            - src/tools/ListMcpResourcesTool/
+            - src/tools/ReadMcpResourceTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/mcp
+    tools_engine/messaging:
+        dir_name: 智能体通信与远程触发工具集
+        title: 智能体通信与远程触发工具集
+        scope:
+            - src/tools/SendMessageTool/
+            - src/tools/SendUserFileTool/
+            - src/tools/RemoteTriggerTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/team_workflow
+            - path: bridge_remote/remote_session
+    tools_engine/misc_utilities_1:
+        dir_name: 交互式用户输入与REPL环境工具
+        title: 交互式用户输入与REPL环境工具
+        scope:
+            - src/tools/AskUserQuestionTool/
+            - src/tools/REPLTool/
+            - src/tools/TungstenTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: ui_components
+    tools_engine/misc_utilities_2:
+        dir_name: 杂项工具占位模块
+        title: 杂项工具占位模块
+        scope:
+            - src/tools/DiscoverSkillsTool/
+            - src/tools/MonitorTool/
+            - src/tools/OverflowTestTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    tools_engine/misc_utilities_3:
+        dir_name: 杂项工具定义
+        title: 杂项工具定义
+        scope:
+            - src/tools/ReviewArtifactTool/
+            - src/tools/SleepTool/
+            - src/tools/SnipTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    tools_engine/misc_utilities_4:
+        dir_name: 结构化输出与工具常量定义
+        title: 结构化输出与工具常量定义
+        scope:
+            - src/tools/SyntheticOutputTool/
+            - src/tools/TerminalCaptureTool/
+            - src/tools/VerifyPlanExecutionTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    tools_engine/misc_utilities_5:
+        dir_name: 任务输出检索与 MCP 认证代理
+        title: 任务输出检索与 MCP 认证代理
+        scope:
+            - src/tools/TaskOutputTool/
+            - src/tools/McpAuthTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tasks_jobs_migrations
+            - path: tools_engine/task_management
+    tools_engine/scheduling:
+        dir_name: 定时任务调度工具集
+        title: 定时任务调度工具集
+        scope:
+            - src/tools/ScheduleCronTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tasks_jobs_migrations
+    tools_engine/task_lifecycle_todo:
+        dir_name: 任务生命周期与待办管理工具
+        title: 任务生命周期与待办管理工具
+        scope:
+            - src/tools/TaskStopTool/
+            - src/tools/TaskUpdateTool/
+            - src/tools/TodoWriteTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tasks_jobs_migrations
+            - path: tools_engine/task_management
+    tools_engine/task_management:
+        dir_name: 任务管理工具集
+        title: 任务管理工具集
+        scope:
+            - src/tools/TaskCreateTool/
+            - src/tools/TaskGetTool/
+            - src/tools/TaskListTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/task_lifecycle_todo
+            - path: tools_engine/misc_utilities_5
+    tools_engine/team_workflow:
+        dir_name: 多智能体团队与工作流管理
+        title: 多智能体团队与工作流管理
+        scope:
+            - src/tools/TeamCreateTool/
+            - src/tools/TeamDeleteTool/
+            - src/tools/WorkflowTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/agent
+            - path: tools_engine/messaging
+            - path: assistant_buddy_coordinator
+    tools_engine/tool_search:
+        dir_name: 延迟工具搜索与动态加载
+        title: 延迟工具搜索与动态加载
+        scope:
+            - src/tools/ToolSearchTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/tools
+    tools_engine/web_tools:
+        dir_name: Web 内容获取与搜索工具
+        title: Web 内容获取与搜索工具
+        scope:
+            - src/tools/WebBrowserTool/
+            - src/tools/WebFetchTool/
+            - src/tools/WebSearchTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/api
+            - path: tools_engine/file_search_notebook
+    tools_engine/worktree:
+        dir_name: 工作区隔离与会话通信工具
+        title: 工作区隔离与会话通信工具
+        scope:
+            - src/tools/EnterWorktreeTool/
+            - src/tools/ExitWorktreeTool/
+            - src/tools/BriefTool/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: tools_engine/file_operations
+    types_constants_schemas:
+        dir_name: 类型定义、常量与模式校验
+        title: 类型定义、常量与模式校验
+        scope:
+            - src/types/
+            - src/constants/
+            - src/schemas/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: commands
+            - path: tools_engine
+            - path: services/mcp
+    ui_components:
+        dir_name: 通用对话框与权限交互组件
+        title: 通用对话框与权限交互组件
+        scope:
+            - src/components/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: cli_runtime/terminal_ui_engine
+            - path: state_hooks_context
+            - path: tools_engine/misc_utilities_1
+            - path: assistant_buddy_coordinator
+    utils_support:
+        dir_name: 权限控制与自动决策引擎
+        title: 权限控制与自动决策引擎
+        scope:
+            - src/utils/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: services/tools
+            - path: services/team_memory_sync

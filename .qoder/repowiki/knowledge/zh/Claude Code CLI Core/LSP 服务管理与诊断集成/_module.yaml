@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: services/lsp
+title: LSP 服务管理与诊断集成
+scope:
+    - src/services/lsp/
+source_files: []
+depends_on: []
+related_to:
+    - path: tools_engine/lsp_tool
+    - path: tools_engine/file_operations
+    - path: tools_engine/file_search_notebook

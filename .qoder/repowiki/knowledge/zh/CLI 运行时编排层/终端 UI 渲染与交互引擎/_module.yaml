@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: cli_runtime/terminal_ui_engine
+title: 终端 UI 渲染与交互引擎
+scope:
+    - src/ink/
+source_files: []
+depends_on: []
+related_to:
+    - path: cli_runtime/cli_runtime_core
+    - path: ui_components
+    - path: keybindings_vim_voice
+    - path: native_shims_vendor
+    - path: state_hooks_context

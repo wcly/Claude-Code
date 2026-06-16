@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: services/remote_managed_settings
+title: 远程托管设置管理
+scope:
+    - src/services/remoteManagedSettings/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/api
+    - path: commands/session_config_clear

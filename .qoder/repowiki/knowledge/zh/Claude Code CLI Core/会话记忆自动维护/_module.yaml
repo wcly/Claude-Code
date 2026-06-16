@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: services/session_memory
+title: 会话记忆自动维护
+scope:
+    - src/services/SessionMemory/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/auto_dream
+    - path: services/team_memory_sync
+    - path: services/compact
+    - path: plugins_skills_memdir
+    - path: tools_engine/agent

@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: keybindings_vim_voice
+title: 快捷键绑定与 Vim 模式引擎
+scope:
+    - src/keybindings/
+    - src/vim/
+    - src/voice/
+source_files: []
+depends_on: []
+related_to:
+    - path: cli_runtime/terminal_ui_engine
+    - path: state_hooks_context

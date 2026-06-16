@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: tools_engine/misc_utilities_4
+title: 结构化输出与工具常量定义
+scope:
+    - src/tools/SyntheticOutputTool/
+    - src/tools/TerminalCaptureTool/
+    - src/tools/VerifyPlanExecutionTool/
+source_files: []
+depends_on: []
+related_to: []

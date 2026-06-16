@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: state_hooks_context
+title: 全局状态管理与响应式上下文
+scope:
+    - src/state/
+    - src/hooks/
+    - src/context/
+source_files: []
+depends_on: []
+related_to:
+    - path: ui_components
+    - path: bootstrap_output_moreright_upstream
+    - path: services/tips
+    - path: keybindings_vim_voice
+    - path: cli_runtime/terminal_ui_engine

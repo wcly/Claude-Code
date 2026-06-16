@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: bootstrap_output_moreright_upstream
+title: 会话状态管理与上游代理隧道
+scope:
+    - src/bootstrap/
+    - src/outputStyles/
+    - src/moreright/
+    - src/upstreamproxy/
+source_files: []
+depends_on: []
+related_to:
+    - path: bridge_remote/bridge_core
+    - path: services/analytics
+    - path: state_hooks_context

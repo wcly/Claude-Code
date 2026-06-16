@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: services/context_collapse
+title: 上下文折叠服务
+scope:
+    - src/services/contextCollapse/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/compact

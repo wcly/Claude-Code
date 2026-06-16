@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: docs
+title: Claude Code 隐藏功能与架构文档
+scope:
+    - docs/
+source_files: []
+depends_on: []
+related_to:
+    - path: cli_runtime

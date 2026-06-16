@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: tools_engine/bash_shell
+title: PowerShell 命令执行与安全沙箱
+scope:
+    - src/tools/BashTool/
+    - src/tools/PowerShellTool/
+    - src/tools/shared/
+source_files: []
+depends_on: []
+related_to:
+    - path: tasks_jobs_migrations
+    - path: services/tools
+    - path: commands/install_github_app

@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: plugins_skills_memdir
+title: 插件、技能与记忆目录管理
+scope:
+    - src/plugins/
+    - src/skills/
+    - src/memdir/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/plugins
+    - path: services/session_memory
+    - path: services/skill_search
+    - path: commands/plugin

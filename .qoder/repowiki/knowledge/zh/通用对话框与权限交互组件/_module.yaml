@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: ui_components
+title: 通用对话框与权限交互组件
+scope:
+    - src/components/
+source_files: []
+depends_on: []
+related_to:
+    - path: cli_runtime/terminal_ui_engine
+    - path: state_hooks_context
+    - path: tools_engine/misc_utilities_1
+    - path: assistant_buddy_coordinator

@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: native_shims_vendor
+title: 原生能力垫片与纯 TS 替代层
+scope:
+    - src/native-ts/
+    - shims/
+source_files: []
+depends_on: []
+related_to:
+    - path: cli_runtime/terminal_ui_engine
+    - path: tools_engine/file_operations

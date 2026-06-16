@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: tools_engine/tool_search
+title: 延迟工具搜索与动态加载
+scope:
+    - src/tools/ToolSearchTool/
+source_files: []
+depends_on: []
+related_to:
+    - path: services/tools
